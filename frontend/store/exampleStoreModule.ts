@@ -40,7 +40,7 @@ export default class ExampleStoreModule extends VuexModule {
 
   @Action
   async loadIp() {
-    const ip = await $axios.$get("http://icanhazip.com");
+    const ip = await $axios.$get("https://icanhazip.com");
     this.SET_IP(ip);
   }
 

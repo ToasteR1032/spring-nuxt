@@ -85,12 +85,12 @@ export default class ExampleComponent extends mixins(ExampleMixin) {
 
   // https://nuxtjs.org/api/pages-fetch/
   async fetch() {
-    const ip = await this.$axios.$get("http://icanhazip.com");
+    const ip = await this.$axios.$get("https://icanhazip.com");
     this.ip = ip;
   }
 
   async fetchSomething() {
-    const ip = await this.$axios.$get("http://icanhazip.com");
+    const ip = await this.$axios.$get("https://icanhazip.com");
     console.log(ip);
   }
 

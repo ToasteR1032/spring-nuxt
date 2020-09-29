@@ -36,7 +36,7 @@ export default class extends Vue {
   // returned values are merged with 'data'
   // https://nuxtjs.org/api
   async asyncData({ $axios }: any) {
-    const ip = await $axios.$get("http://icanhazip.com");
+    const ip = await $axios.$get("https://icanhazip.com");
     return { ip };
   }
 
@@ -45,7 +45,7 @@ export default class extends Vue {
   // https://nuxtjs.org/api/pages-fetch/
   async fetch() {
     await this.store.loadIp();
-    const ip = await this.$axios.$get("http://icanhazip.com");
+    const ip = await this.$axios.$get("https://icanhazip.com");
     this.ip2 = ip;
   }
 

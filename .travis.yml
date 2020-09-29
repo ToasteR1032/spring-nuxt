@@ -1,12 +1,5 @@
 language: java
 jdk:
-  - openjdk11
+  - openjdk13
 
-script: mvn clean install
-
-cache:
-  directories:
-  - node_modules
-
-after_success:
-  - mvn clean test jacoco:report
+script: mvn clean test jacoco:report

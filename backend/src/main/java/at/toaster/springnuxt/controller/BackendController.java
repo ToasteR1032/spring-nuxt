@@ -21,9 +21,6 @@ public class BackendController {
 
     private final UserRepository userRepository;
 
-    @Value("${spring.profiles.active:}")
-    private String activeProfile;
-
     @Autowired
     public BackendController(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -32,8 +29,7 @@ public class BackendController {
     @GetMapping(path = "/hello")
     public String sayHello() {
         LOG.info("GET called on /hello resource");
-        LOG.debug("bla");
-        return "Hello, active profile: " + activeProfile;
+        return HELLO_TEXT;
     }
 
     @PostMapping(path = "/user/{lastName}/{firstName}")

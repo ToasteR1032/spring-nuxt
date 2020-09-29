@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/example", (function(a,b){return {data:[{ip:a}],fetch:[{ip2:a,ip:a},{localVariable:b,arr:[b,2,3],snackbar:false,ip:a,someVar:"some variable"}],mutations:[]}}("194.166.123.16\n",1)));

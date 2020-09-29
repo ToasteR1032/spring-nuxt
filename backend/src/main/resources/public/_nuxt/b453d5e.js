@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{261:function(e,m,l){"use strict";l.r(m),m.default={exampleComponent:{welcome:"Welcome to this example page",example:"Simple example",parameterExample:"Example param ({param})",pluralExample:"example | examples"}}}}]);

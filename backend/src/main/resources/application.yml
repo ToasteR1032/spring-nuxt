@@ -1,0 +1,17 @@
+logging:
+  file:
+    name: ./log/backend.log
+  level.: WARN
+
+application:
+  rest:
+    apiPrefix: /api/v1
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true

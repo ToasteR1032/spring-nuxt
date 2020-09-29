@@ -1,5 +1,5 @@
-import ExampleComponent from '~/components/ExampleComponent.vue'
-import ExampleStoreModule from '~/store/examplestoremodule'
+import ExampleComponent from '@/components/ExampleComponent.vue'
+import ExampleStoreModule from '@/store/examplestoremodule'
 import BasicTestUtils from "./utils/basicTestUtils";
 
 

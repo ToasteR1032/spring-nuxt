@@ -9,9 +9,25 @@ application:
 
 spring:
   jpa:
-    show-sql: true
     hibernate:
       ddl-auto: update
-  h2:
-    console:
-      enabled: true
+
+# Define profiles
+
+---
+
+spring:
+  profiles: development
+    include: development,h2
+
+---
+
+spring:
+  profiles: production-h2
+    include: production,h2
+
+---
+
+spring:
+  profiles: production-postgres
+    include: production,postgres

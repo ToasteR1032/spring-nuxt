@@ -3,6 +3,7 @@
 # 1. Building the App with Maven
 FROM maven:3-jdk-11
 
+ENV SPRING_PROFILES_ACTIVE=production-h2
 ADD . /springbootvuejs
 WORKDIR /springbootvuejs
 

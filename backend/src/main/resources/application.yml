@@ -12,22 +12,23 @@ spring:
     hibernate:
       ddl-auto: update
 
-# Define profiles
-
+#######################
+### Define profiles ###
+#######################
 ---
 
 spring:
   profiles: development
-    include: development,h2
+  profiles.include: development,h2
 
 ---
 
 spring:
   profiles: production-h2
-    include: production,h2
+  profiles.include: production,h2
 
 ---
 
 spring:
   profiles: production-postgres
-    include: production,postgres
+  profiles.include: production,postgres

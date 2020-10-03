@@ -1,5 +1,5 @@
 logging:
-  level.: INFO
+  level.: DEBUG
 
 spring:
   jpa:

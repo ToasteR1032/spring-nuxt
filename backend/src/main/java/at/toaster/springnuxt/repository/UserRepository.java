@@ -1,16 +1,17 @@
 package at.toaster.springnuxt.repository;
 
+import java.util.Optional;
 
-import at.toaster.springnuxt.domain.User;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
+import at.toaster.springnuxt.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
-public interface UserRepository extends CrudRepository<User, Long> {
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByUsername(String username);
 
-    List<User> findByLastName(@Param("lastname") String lastname);
+    Boolean existsByUsername(String username);
 
-    List<User> findByFirstName(@Param("firstname") String firstname);
-
+    Boolean existsByEmail(String email);
 }

@@ -1,8 +1,5 @@
 package at.toaster.springnuxt.controller;
 
-import at.toaster.springnuxt.repository.UserRepository;
-import at.toaster.springnuxt.domain.User;
-import at.toaster.springnuxt.exception.UserNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +8,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController()
-@RequestMapping("${application.rest.apiPrefix}")
+@RequestMapping("${application.rest.apiPrefix}/example")
 public class BackendController {
-
+    @GetMapping(path = "/hello")
+    public String sayHello() {
+        return "bla";
+    }
+/*
     private static final Logger LOG = LoggerFactory.getLogger(BackendController.class);
 
     public static final String HELLO_TEXT = "Hello from Spring Boot Backend!";
@@ -31,6 +32,7 @@ public class BackendController {
         LOG.info("GET called on /hello resource");
         return HELLO_TEXT;
     }
+    /*
 
     @PostMapping(path = "/user/{lastName}/{firstName}")
     @ResponseStatus(HttpStatus.CREATED)
@@ -56,4 +58,5 @@ public class BackendController {
         LOG.info("GET successfully called on /secured resource");
         return SECURED_TEXT;
     }
+    */
 }

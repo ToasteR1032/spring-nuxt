@@ -6,7 +6,16 @@ logging:
 application:
   rest:
     apiPrefix: /api/v1
+  authentication:
+    signature-algorithm: HS256
+    secret: superS3cr3t123
+    validity-duration: 31536000
+    overlap-duration: 300
 
+security:
+  basic:
+    enabled: false
+    
 spring:
   jpa:
     hibernate:

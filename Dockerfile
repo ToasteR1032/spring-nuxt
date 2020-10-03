@@ -27,4 +27,4 @@ COPY --from=0 "/springbootvuejs/backend/target/backend-0.0.1-SNAPSHOT.jar" app.j
 ENV JAVA_OPTS=""
 
 # Fire up our Spring Boot app by default
-ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar" ]
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.at.toaster.springnuxt.security.egd=file:/dev/./urandom -jar /app.jar" ]

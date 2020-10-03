@@ -17,12 +17,15 @@ import ExampleStoreModule from "~/store/exampleStoreModule";
 import {getModule} from "vuex-module-decorators";
 
 @Component({
+  middleware: ['auth'],
+  meta: {
+    role: 'ADMIN',
+  },
   components: {
     ExampleComponent,
   },
 })
 export default class extends Vue {
-  middleware: ['auth']
   ip2: string = "";
   store: ExampleStoreModule;
 

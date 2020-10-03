@@ -1,5 +1,9 @@
 import colors from 'vuetify/es5/util/colors'
 
+const PORT = process.env.PORT || 8098;
+const BACKEND_URL = `http://localhost:${PORT}`;
+const PREFIX = '/api/v1';
+
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
@@ -31,6 +35,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    '@/plugins/startup-config.ts',
     '@/plugins/axios-accessor.ts'
   ],
 
@@ -50,7 +55,6 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
-    '@nuxtjs/auth',
     'nuxt-i18n'
   ],
 
@@ -77,23 +81,11 @@ export default {
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: "/api/v1"
+    baseURL: PREFIX
   },
 
   proxy: {
-    '/api': 'http://localhost:8098'
-  },
-
-  auth: {
-    strategies: {
-      local: {
-        endpoints: {
-          login: { url: 'login', method: 'post', propertyName: 'data.token' },
-          user: { url: 'user', method: 'get', propertyName: 'data' },
-          logout: false
-        }
-      }
-    }
+    '/api': BACKEND_URL
   },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)

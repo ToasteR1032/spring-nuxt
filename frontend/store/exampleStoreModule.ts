@@ -1,5 +1,5 @@
-import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
-import { $axios } from '~/utils/api';
+import {Module, VuexModule, Mutation, Action, MutationAction} from 'vuex-module-decorators'
+import { $axios } from '~/utils/axios';
 
 @Module({
   name: 'exampleStoreModule',
@@ -26,10 +26,12 @@ export default class ExampleStoreModule extends VuexModule {
     this.attr2 = number;
   }
 
+  /*
   @Mutation
   SET_IP(ip: string) {
     this.ip = ip;
   }
+  */
 
   // Actions can be async and are only needed if your operations are asynchronous, otherwise just use a mutation
   @Action
@@ -38,10 +40,19 @@ export default class ExampleStoreModule extends VuexModule {
     this.SET_ATTR1(['hello', value]);
   }
 
+  /*
   @Action
   async loadIp() {
     const ip = await $axios.$get("https://icanhazip.com");
     this.SET_IP(ip);
+  }
+  */
+
+  // or use MutationAction, combines Mutation and Action, return value sets state
+  @MutationAction
+  async loadIp() {
+    const ip = await $axios.$get("https://icanhazip.com");
+    return { ip }; // short for { ip: ip }
   }
 
   // Getter with some functionality, if no functionality is needed just access attribute directly

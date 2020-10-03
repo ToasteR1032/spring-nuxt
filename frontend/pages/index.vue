@@ -7,8 +7,10 @@
       </div>
       <v-card>
         <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template: {{ store.attr2 }} <br />
-          {{ fromBackend }}
+          Welcome to the Vuetify + Nuxt.js template: {{ exampleStore.attr2 }} <br />
+          Data from Backend: {{ fromBackend }}
+          <br />
+          <div v-if="username">Welcome {{ username }}!</div>
         </v-card-title>
         <v-card-text>
           <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
@@ -83,6 +85,7 @@ import Logo from '~/components/Logo.vue';
 import VuetifyLogo from '~/components/VuetifyLogo.vue';
 import ExampleStoreModule from "~/store/exampleStoreModule";
 import { getModule } from 'vuex-module-decorators';
+import AuthStoreModule from "~/store/authStoreModule";
 
 @Component({
   components: {
@@ -91,15 +94,21 @@ import { getModule } from 'vuex-module-decorators';
   }
 })
 export default class extends Vue {
-  store: ExampleStoreModule;
+  exampleStore: ExampleStoreModule;
+  authStore: AuthStoreModule;
 
   created() {
-    this.store = getModule(ExampleStoreModule, this.$store);
+    this.exampleStore = getModule(ExampleStoreModule, this.$store);
+    this.authStore = getModule(AuthStoreModule, this.$store);
   }
 
   async asyncData({ $axios }: any) {
-    const fromBackend = await $axios.$get("/hello");
+    const fromBackend = await $axios.$get("/test/all");
     return { fromBackend };
+  }
+
+  get username(): string {
+    return this.authStore.userData?.username;
   }
 
 }

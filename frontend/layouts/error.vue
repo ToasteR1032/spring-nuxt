@@ -4,7 +4,7 @@
       {{ pageNotFound }}
     </h1>
     <h1 v-else>
-      {{ otherError }}
+      {{ error.message }}
     </h1>
     <NuxtLink to="/">
       Home page
@@ -16,6 +16,7 @@
 import { Component, Vue, Prop } from "nuxt-property-decorator";
 
 interface Error {
+  message: string,
   statusCode: number
 }
 @Component({
@@ -23,13 +24,12 @@ interface Error {
 })
 export default class extends Vue {
   pageNotFound: string = "404 Not Found";
-  otherError: string = "An error occurred";
   @Prop({ required: false, default: null }) error!: Error;
 
   // set <title> in <head>
   public head() {
     return {
-      title: this.error.statusCode === 404 ? this.pageNotFound : this.otherError
+      title: this.error.statusCode === 404 ? this.pageNotFound : this.error.message
     }
   }
 }

@@ -68,7 +68,6 @@ import { Component, Vue } from "nuxt-property-decorator";
 
 @Component
 export default class extends Vue {
-  
 
   clipped: boolean = false;
   drawer: boolean = false;

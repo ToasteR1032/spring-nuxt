@@ -1,7 +1,7 @@
 # Docker multi-stage build
 
 # 1. Building the App with Maven
-FROM maven:3-jdk-13
+FROM maven:3-openjdk-15
 
 ENV SPRING_PROFILES_ACTIVE=production-h2
 ADD . /springbootvuejs
@@ -15,7 +15,7 @@ RUN mvn clean install
 
 
 # Just using the build artifact and then removing the build-container
-FROM openjdk:13-jdk
+FROM openjdk:15-jdk
 
 MAINTAINER ToasteR
 

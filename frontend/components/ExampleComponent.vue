@@ -39,7 +39,6 @@
 
 <script lang="ts">
 import {
-  Vue,
   Component,
   Watch,
   Emit,
@@ -47,9 +46,12 @@ import {
   mixins,
 } from "nuxt-property-decorator";
 import ExampleMixin from "~/mixins/exampleMixin";
-import SomeType from "~/types/sometype";
 import { getModule } from "vuex-module-decorators";
 import ExampleStoreModule from "~/store/exampleStoreModule";
+import ExampleService from "~/services/exampleService";
+import {Inject} from "vue-typedi";
+// import type!
+import type SomeType from "~/types/someType";
 
 interface TypeDefinedHere {
   something: string;
@@ -66,6 +68,8 @@ export default class ExampleComponent extends mixins(ExampleMixin) {
   @Prop({ required: false }) readonly extractedType!: SomeType;
   @Prop({ required: false }) readonly typeDefinedHere!: TypeDefinedHere;
 
+  @Inject()
+  exampleService!: ExampleService;
   localVariable: number = 1;
   arr: Array<number> = [1, 2, 3];
   snackbar: boolean = false;
@@ -85,11 +89,12 @@ export default class ExampleComponent extends mixins(ExampleMixin) {
 
   // https://nuxtjs.org/api/pages-fetch/
   async fetch() {
-    const ip = await this.$axios.$get("https://icanhazip.com");
+    const ip = await this.exampleService.getIp();
     this.ip = ip;
   }
 
   async fetchSomething() {
+    // If you don't use injected services (which you probably should) you can get axios from this.$axios
     const ip = await this.$axios.$get("https://icanhazip.com");
     console.log(ip);
   }

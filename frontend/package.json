@@ -20,6 +20,8 @@
     "nuxt": "^2.14.5",
     "nuxt-i18n": "^6.15.1",
     "nuxt-property-decorator": "^2.8.8",
+    "reflect-metadata": "^0.1.13",
+    "vue-typedi": "^1.1.1",
     "vuex-module-decorators": "^1.0.1"
   },
   "devDependencies": {

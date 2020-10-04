@@ -12,7 +12,9 @@
           v-for="(item, i) in items"
           :key="i"
           :to="item.to"
+          v-if="!item.role || authStore.hasRole(item.role)"
           router
+          nuxt
           exact
         >
           <v-list-item-action>
@@ -20,6 +22,29 @@
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title v-text="item.title" />
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item
+          to="/login"
+          router
+          exact
+          nuxt
+          v-if="!authStore.isLoggedIn"
+        >
+          <v-list-item-action>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Login</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item
+          v-else
+          @click="logout()"
+        >
+          <v-list-item-action>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Logout</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -63,7 +88,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "nuxt-property-decorator";
+  import {Component, getModule, Vue} from "nuxt-property-decorator";
+import AuthStoreModule from "~/store/authStoreModule";
 
 
 @Component
@@ -77,22 +103,48 @@ export default class extends Vue {
       icon: "mdi-apps",
       title: "Welcome",
       to: "/",
+      role: null,
     },
     {
       icon: "mdi-chart-bubble",
       title: "Inspire",
       to: "/inspire",
+      role: null,
     },
     {
       icon: "",
       title: "Example",
       to: "/example",
+      role: null
+    },
+    {
+      icon: "",
+      title: "User only",
+      to: "/user",
+      role: 'USER'
+    },
+    {
+      icon: "",
+      title: "Admin only",
+      to: "/admin",
+      role: 'ADMIN'
     },
   ];
   miniVariant: boolean = false;
   right: boolean = true;
   rightDrawer: boolean = false;
   title: string = "Vuetify.js";
+
+  authStore: AuthStoreModule;
+
+  created() {
+    this.authStore = getModule(AuthStoreModule, this.$store);
+  }
+
+  logout() {
+    this.authStore.logout();
+    this.$router.push('/login');
+  }
 }
 </script>
 

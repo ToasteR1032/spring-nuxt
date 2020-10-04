@@ -36,7 +36,8 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '@/plugins/startup-config.ts',
-    '@/plugins/axios-accessor.ts'
+    '@/plugins/axios-accessor.ts',
+    '@/plugins/type-di.ts'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

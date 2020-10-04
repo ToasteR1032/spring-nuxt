@@ -9,8 +9,9 @@ export function initializeAxios(axiosInstance: NuxtAxiosInstance, store: any) {
   $axios = axiosInstance
   $axios.interceptors.request.use((config) => {
     const token = authStore.userData?.accessToken || localStorage.getItem('token');
-    if (token) {
-
+    // Only add token to our api
+    if (token && config.url[0] == '/') {
+      config.headers.Authorization =  token ? `Bearer ${token}` : '';
     }
     return config;
   }, (error) => {

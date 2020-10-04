@@ -1,15 +1,8 @@
 import {Module, VuexModule, Mutation, Action} from 'vuex-module-decorators'
 import { $axios } from '~/utils/axios';
-import ExampleStoreModule from "~/store/exampleStoreModule";
+// import type!
+import type UserData from "~/types/userData.ts";
 
-interface UserData {
-  id?: number,
-  username?: string,
-  email?: string,
-  roles?: Array<string>
-  accessToken?: string
-  tokenType?: string
-}
 @Module({
   name: 'authStoreModule',
   namespaced: true,
@@ -62,5 +55,14 @@ export default class AuthStoreModule extends VuexModule {
   @Action
   async logout() {
     this.SET_USERDATA(null);
+  }
+
+  get isLoggedIn(): boolean {
+    return this.userData != null;
+  }
+
+  // Getter with parameter: return a function
+  get hasRole() {
+    return (role: string) => this.userData?.roles.includes(role);
   }
 }

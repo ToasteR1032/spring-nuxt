@@ -15,7 +15,7 @@ RUN mvn clean install
 
 
 # Just using the build artifact and then removing the build-container
-FROM openjdk:15-jdk
+FROM openjdk:16.0.2-jdk
 
 MAINTAINER ToasteR
 
